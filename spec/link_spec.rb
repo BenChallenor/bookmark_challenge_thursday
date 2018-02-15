@@ -25,8 +25,15 @@ describe Link do
       expect(urls).to include("http://www.friedegg.com")
     end
 
+    # it "does not create a new link if the url is not valid" do
+    #   Link.add('fakelink')
+    #   links = Link.all
+    #   urls = links.map(&:url)
+    #   expect(urls).not_to include "fakelink"
+    # end
+
     it "an error is raised when an invalid url is added" do
-      expect { described_class.add("hello") }.to raise_error "Invalid link given"
+      expect { described_class.add("fakelink") }.to raise_error "Invalid link given"
     end
   end
 
