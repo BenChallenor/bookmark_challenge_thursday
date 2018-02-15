@@ -26,7 +26,7 @@ register Sinatra::Flash
       redirect('/new')
     end
     # flash[:notice] = "Invalid link given" unless Link.add(@new_link)
-    # Link.url?(@new_link)
+    # Link.url?(@new_link) rspe
     # Link.add(@new_link)
     redirect('/')
   end

@@ -2,12 +2,19 @@ require 'pg'
 require_relative 'database_connection'
 
 class Link
+
+  attr_reader :url
+
+  def initialize(url)
+    @url = url
+  end
+
   def self.all
     # connection = PG.connect dbname: 'bookmark_manager_' + ENV['RACK_ENV']
     # result = connection.exec 'SELECT * FROM links'
     result = DatabaseConnection.query('SELECT * FROM links')
-    result.map { |row| row['url'] }
-
+     # result.map { |row| row['url'] }
+     result.map { |link| Link.new(link['url']) }
   end
 
   def self.add(link)
