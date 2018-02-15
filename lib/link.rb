@@ -19,6 +19,6 @@ class Link
 
   def self.url?(link)
     link !~ /^http:\/\/www\..+\..+/
-    # ^ = at the start og
+    # ^ = at the start of the url
   end
 end
