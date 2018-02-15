@@ -24,8 +24,9 @@ task :set_up do
   begin
     ["bookmark_manager_development", "bookmark_manager_test"].each do |db_name|
       connect = PG.connect
+      connect.exec("DROP DATABASE #{db_name}")
       connect.exec("CREATE DATABASE #{db_name}")
-      connection PG.connect dbname: db_name
+      connection = PG.connect dbname: db_name
       connection.exec("CREATE TABLE links (id SERIAL PRIMARY KEY, url VARCHAR
         (60), title VARCHAR(60));")
     end
