@@ -9,8 +9,17 @@ feature "Add link" do
   scenario "User adds a link and it is added to the list" do
     visit '/'
     click_button "Add link"
-    fill_in("new_link", :with => "http://friedegg.com")
+    fill_in("new_link", :with => "http://www.friedegg.com")
     click_button "Submit link"
-    expect(page).to have_link("http://friedegg.com")
+    expect(page).to have_link("http://www.friedegg.com")
   end
+
+  scenario "Check a users link is a valid url address" do
+    visit '/'
+    click_button "Add link"
+    fill_in("new_link", :with => "getfitwithhunor")
+    click_button "Submit link"
+    expect(page).to have_content("Invalid link given")
+  end
+
 end

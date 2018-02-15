@@ -12,8 +12,8 @@ describe Link do
 
   describe "#add" do
     it "adds a link to the database" do
-      described_class.add("http://friedegg.com")
-      expect(described_class.all).to include "http://friedegg.com"
+      described_class.add("http://www.friedegg.com")
+      expect(described_class.all).to include "http://www.friedegg.com"
     end
   end
 

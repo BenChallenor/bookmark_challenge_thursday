@@ -11,8 +11,14 @@ class Link
   end
 
   def self.add(link)
+    fail "Invalid link given" if url?(link)
     DatabaseConnection.query("INSERT INTO links (url) VALUES('#{link}')")
     # connection = PG.connect dbname: 'bookmark_manager_' + ENV['RACK_ENV']
     # connection.exec "INSERT INTO links (url) VALUES('#{link}')"
+  end
+
+  def self.url?(link)
+    link !~ /^http:\/\/www\..+\..+/
+    # ^ = at the start og
   end
 end
