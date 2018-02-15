@@ -4,8 +4,8 @@ require 'pg'
 task :setup_test_database do
   connection = PG.connect dbname: 'bookmark_manager_' + ENV['RACK_ENV']
   connection.exec "TRUNCATE links;
-  INSERT INTO links (url) VALUES ('http://facebook.com');
-  INSERT INTO links (url) VALUES ('http://google.com');"
+  INSERT INTO links (url) VALUES ('http://facebook.com', 'Facebook');
+  INSERT INTO links (url) VALUES ('http://google.com', 'Google');"
 end
 
 
@@ -27,7 +27,7 @@ task :set_up do
       connect.exec("CREATE DATABASE #{db_name}")
       connection PG.connect dbname: db_name
       connection.exec("CREATE TABLE links (id SERIAL PRIMARY KEY, url VARCHAR
-        (60))")
+        (60), title VARCHAR(60));")
     end
   # rescue PG::DuplicateDatabase
     # do stuff to empty the existing databases
