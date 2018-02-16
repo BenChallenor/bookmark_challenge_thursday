@@ -32,12 +32,15 @@ describe Link do
       expect(urls).not_to include "fakelink"
     end
 
-    # it "an error is raised when an invalid url is added" do
-    #   Link.add(url: "hello")
-    #   links = Links.all
-    #   urls = links.map(&:url)
-    #   expect(urls).not_to include "hello"
-    # end
+  end
+
+  describe "#delete" do
+    it "deletes a link from the database" do
+      Link.delete(id)
+      links = Link.all
+      titles = links.map(&:title)
+      expect(titles).not_to include "Google"
+    end
   end
 
 end

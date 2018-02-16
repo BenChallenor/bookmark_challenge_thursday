@@ -20,8 +20,12 @@ class Link
   def self.add(link)
     return false unless url?(link[:url])
     DatabaseConnection.query("INSERT INTO links (url, title) VALUES('#{link[:url]}', '#{link[:title]}')" )
-
   end
+
+  def self.delete(id)
+    DatabaseConnection.query("DELETE FROM links WHERE id = #{id}")
+  end
+
 
   def self.url?(link)
     link =~ /^http:\/\/www\..+\..+/

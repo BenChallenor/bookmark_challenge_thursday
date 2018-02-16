@@ -9,7 +9,12 @@
       <% @links.each do |link| %>
         <h1>
           <li id="link-<%= link.id %>">
-            <a href="<%= link.url %>"><%= link.title %></a></li>
+            <a href="<%= link.url %>"><%= link.title %></a>
+          <form action="/delete" method="post">
+            <input type="hidden" name="id" value="<%= link.id %>">
+            <input type="submit" value="Delete link">
+          </form>
+        </li>
         </h1>
       <% end %>
     </ul>
