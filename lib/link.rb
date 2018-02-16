@@ -3,7 +3,7 @@ require_relative 'database_connection'
 
 class Link
 
-  attr_reader :url, :id
+  attr_reader :url, :id, :title
 
   def initialize(id, url, title)
     @url = url
@@ -18,12 +18,12 @@ class Link
   end
 
   def self.add(link)
-    fail "Invalid link given" if url?(link)
-    DatabaseConnection.query("INSERT INTO links (url) VALUES('#{link}')")
+    return false unless url?(link[:url])
+    DatabaseConnection.query("INSERT INTO links (url, title) VALUES('#{link[:url]}', '#{link[:title]}')" )
 
   end
 
   def self.url?(link)
-    link !~ /^http:\/\/www\..+\..+/
+    link =~ /^http:\/\/www\..+\..+/
   end
 end

@@ -18,13 +18,16 @@ register Sinatra::Flash
   end
 
   post '/' do
-    @new_link = params[:new_link]
     begin
-      Link.add(@new_link)
-    rescue Exception => e
-      flash[:error] = e.message
-      redirect('/new')
-    end
+    flash[:notice] = "Invalid link given" unless Link.add(url: params['new_link'], title: params['title'])
+    redirect('/new')
+  end
+    # begin
+    #   Link.add(url: params['new_link'], title: params['title'])
+    # rescue Exception => e
+    #   flash[:error] = e.message
+    #   redirect('/new')
+    # end
     # flash[:notice] = "Invalid link given" unless Link.add(@new_link)
     # Link.url?(@new_link) rspe
     # Link.add(@new_link)
